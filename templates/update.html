@@ -4,21 +4,32 @@
 <main>
 <h1 class="my-3 text-center">Update</h1>
 <div class="container mt-4">
-   // Form for tasks //
-    <form class="text-center border p-4 thick-border" action="" method="post">
+
+    <form class="text-center border p-4 thick-border" action="/" method="post">
         <div class="d-flex justify-content-center">
             <div class="mb-3 col-4">
-                <label for="taskTitle" class="form-label">Title</label>
-                <input type="text" class="form-control" id="taskTitle" name="title">
+                <label for="admNo" class="form-label">Admission No.</label>
+                <input type="text" class="form-control" id="admNo" name="AdmssionNum">
+
+                <label for="stuName" class="form-label">Student Name</label>
+                <input type="text" class="form-control" id="stuName" name="studentName">
+
+                <label for="FatherName" class="form-label">Father Name</label>
+                <input type="text" class="form-control" id="FatherName" name="fatherName">
+
+                <label for="stuDob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="stuDob" name="DateofBirth">
+
+                <label for="stuGender" class="form-label">Gender: (M/F)</label>
+                <input type="text" class="form-control" id="stuGender" name="studentGender">
+
+                <label for="stuMobile" class="form-label">Student Mobile Number</label>
+                <input type="number" class="form-control" id="stuMobile" name="Mob_number">
+
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="mb-3 col-4">
-                <label for="taskDescription" class="form-label">Description</label>
-                <textarea class="form-control" id="taskDescription" rows="3" name="description"></textarea>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg">Update</button>
+       
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     </form>
 </div>
 </main>

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Connect the Flask app with SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///admin.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 # Create an object of SQLAlchemy class
 db = SQLAlchemy(app)
@@ -74,13 +74,39 @@ def contact():
 
 @app.route('/delete')
 def delete():
-    serial_number = request.args.get('admNo')
-    if serial_number:
-        admini = Admin.query.filter_by(admNo=serial_number).first()
-        if admini:
-            db.session.delete(admini)
-            db.session.commit()
+
+    admNo = request.args.get('admno')
+    admin = Admin.query.filter_by(admNo=admNo).first()
+    if admin:
+        db.session.delete(admin)
+        db.session.commit()
+        return redirect('/')
+    else:
+        return "Admin with specified admission number not found", 404
+
     return redirect('/')
+
+@app.route('/update',  methods = ["GET", "POST"])
+def update():
+
+    if request.method == 'POST':
+        admNo = request.form['AdmissionNum']
+        admin = Admin.query.filter_by(admNo=admNo).first()
+        
+        if admin:
+            admin.studentName = request.form['studentName']
+            admin.fatherName = request.form['fatherName']
+            admin.dateOfBirth = request.form['DateofBirth']
+            admin.gender = request.form['studentGender']
+            admin.mobileNumber = request.form['Mob_number']
+            db.session.commit()
+            return redirect('/')
+        else:
+            return "Admin with specified admission number not found", 404
+
+    admNo = request.args.get('admno')
+    admin = Admin.query.filter_by(admNo=admNo).first()
+    return render_template('update.html', admin=admin)
 
 
 
